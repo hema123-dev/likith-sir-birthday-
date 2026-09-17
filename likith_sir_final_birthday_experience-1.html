@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Likith Sir — The Birthday Experience</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#050316;color:#fff}
+button{font:inherit}.app{height:100dvh;position:relative;overflow:hidden;background:
+radial-gradient(circle at 15% 20%,#21306b 0,transparent 28%),
+radial-gradient(circle at 85% 80%,#67175e 0,transparent 30%),#050316}
+.stars,.stars:before,.stars:after{content:"";position:absolute;inset:0;background-image:
+radial-gradient(2px 2px at 12% 25%,#fff,transparent),radial-gradient(1px 1px at 28% 70%,#fff,transparent),
+radial-gradient(2px 2px at 53% 18%,#fff,transparent),radial-gradient(1px 1px at 74% 32%,#fff,transparent),
+radial-gradient(2px 2px at 91% 72%,#fff,transparent),radial-gradient(1px 1px at 44% 88%,#fff,transparent);
+animation:twinkle 5s infinite alternate}.stars:before{transform:scale(1.3);opacity:.4;animation-delay:1s}
+@keyframes twinkle{to{opacity:.35;transform:scale(1.04)}}
+.scene{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:24px;z-index:5}
+.scene.on{display:flex;animation:sceneIn .7s ease}@keyframes sceneIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.panel{width:min(1050px,94vw);max-height:88dvh;overflow:auto;text-align:center;padding:42px 34px;border:1px solid #ffffff22;border-radius:32px;background:#ffffff0c;backdrop-filter:blur(18px);box-shadow:0 25px 90px #0009}
+.eyebrow{text-transform:uppercase;letter-spacing:4px;color:#83f7ff;font-size:12px;margin-bottom:14px}
+h1{font-size:clamp(42px,8vw,100px);line-height:.92;margin:8px 0;background:linear-gradient(90deg,#fff,#7df5ff,#ff79d5,#fff);background-size:300%;-webkit-background-clip:text;color:transparent;animation:grad 5s linear infinite}
+@keyframes grad{to{background-position:300%}}h2{font-size:clamp(28px,5vw,60px);margin:10px 0}p{color:#d9d7e5;line-height:1.65;font-size:17px}
+.btn{margin:22px 7px 0;padding:14px 25px;border:0;border-radius:999px;background:#fff;color:#101020;font-weight:800;cursor:pointer;box-shadow:0 0 35px #75f3ff55;transition:.2s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.nav{position:fixed;z-index:40;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid #ffffff30;background:#ffffff12;color:#fff;cursor:pointer}
+.dots{display:flex;gap:6px}.dot{width:7px;height:7px;border-radius:50%;background:#ffffff35}.dot.on{background:#fff;box-shadow:0 0 10px #fff}
+.split{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:22px;align-items:center}
+.sidecard{padding:24px 16px;border:1px solid #ffffff18;border-radius:24px;background:#ffffff09;animation:float 4s ease-in-out infinite}
+.sidecard:nth-child(3){animation-delay:1.2s}@keyframes float{50%{transform:translateY(-12px)}}
+.bigemoji{font-size:58px}.reason,.msg{padding:18px;margin:10px 0;text-align:left;border-radius:18px;background:#ffffff09;border:1px solid #ffffff12}
+.reason b{color:#7ef6ff}.memorygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.memory{min-height:145px;padding:18px;border-radius:22px;display:flex;align-items:end;text-align:left;position:relative;overflow:hidden;border:1px solid #ffffff1d;background:linear-gradient(145deg,#18224d,#4b174c)}
+.memory:nth-child(2){background:linear-gradient(145deg,#153e48,#321b57)}.memory:nth-child(3){background:linear-gradient(145deg,#3d204d,#122f53)}
+.memory:nth-child(4){background:linear-gradient(145deg,#1e4b4a,#281b4c)}.memory:nth-child(5){background:linear-gradient(145deg,#40244c,#19385b)}.memory:nth-child(6){background:linear-gradient(145deg,#143d59,#4d1747)}
+.memory span{font-weight:800;position:relative;z-index:2}.memory:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#0009)}
+.envelopes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}.env{border:1px solid #ffffff18;background:#ffffff0b;border-radius:22px;padding:30px 15px;cursor:pointer;transition:.25s}.env:hover{transform:translateY(-7px)}.env .e{font-size:55px}
+.cake{font-size:120px;filter:drop-shadow(0 0 25px #ff65c8);animation:cake 2s infinite}.candle{font-size:52px;margin-top:-12px;animation:flame .5s infinite alternate}@keyframes cake{50%{transform:translateY(-7px) rotate(1deg)}}@keyframes flame{to{transform:scale(1.12)}}
+.final .panel{background:linear-gradient(135deg,#ffffff0d,#ff4fb40d)}#secret{display:none;margin-top:20px;padding:18px;border-radius:18px;background:#ffffff0b;border:1px solid #ffffff18;color:#fff}
+#secret.show{display:block;animation:pop .5s}@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+#fx{position:absolute;inset:0;z-index:30;pointer-events:none}
+@media(max-width:720px){.scene{padding:15px}.panel{padding:28px 17px;max-height:86dvh}.split{grid-template-columns:1fr}.sidecard{display:none}.memorygrid,.envelopes{grid-template-columns:1fr 1fr}.memory{min-height:115px}p{font-size:15px}.nav{bottom:10px}}
+</style>
+</head>
+<body>
+<div class="app"><div class="stars"></div><canvas id="fx"></canvas>
+
+<section class="scene on" id="s0"><div class="panel">
+<div class="eyebrow">A secret message from</div><h1>2nd Year BSc AI<br>B Section</h1>
+<p>Sir… this isn't just a birthday wish.<br>It's a little journey made specially for you.</p>
+<button class="btn" onclick="go(1)">✦ ENTER THE EXPERIENCE</button>
+</div></section>
+
+<section class="scene" id="s1"><div class="panel">
+<div class="eyebrow">Welcome to our virtual classroom</div><h2>Today, the lesson is...</h2><h1>CELEBRATION! 🎓</h1>
+<p>Our teacher. Our guide. Our inspiration.</p>
+<button class="btn" onclick="go(2)">Open The Classroom →</button>
+</div></section>
+
+<section class="scene" id="s2"><div class="split">
+<div class="sidecard"><div class="bigemoji">🎈</div><h3>Celebration</h3><p>Good vibes only!</p></div>
+<div class="panel"><div class="eyebrow">The teacher behind the lessons</div><h2>Thank You, Likith Sir ❤️</h2>
+<div class="reason">📚 <b>Knowledge</b><br>For turning lessons into understanding.</div>
+<div class="reason">💡 <b>Inspiration</b><br>For encouraging us to think bigger.</div>
+<div class="reason">🤝 <b>Guidance</b><br>For supporting us through our journey.</div>
+<button class="btn" onclick="go(3)">Continue →</button></div>
+<div class="sidecard"><div class="bigemoji">💡</div><h3>Ideas</h3><p>Think. Learn. Grow.</p></div>
+</div></section>
+
+<section class="scene" id="s3"><div class="panel">
+<div class="eyebrow">Our memory gallery</div><h2>Moments We'll Remember 📸</h2>
+<p>These are beautiful placeholders — replace them with your real class photos later.</p>
+<div class="memorygrid">
+<div class="memory"><span>📸 Class Memories</span></div><div class="memory"><span>😄 Fun Moments</span></div>
+<div class="memory"><span>🎓 Learning Together</span></div><div class="memory"><span>🤝 Our Class</span></div>
+<div class="memory"><span>✨ Special Moments</span></div><div class="memory"><span>❤️ Forever Memories</span></div>
+</div><button class="btn" onclick="go(4)">Open Secret Messages 💌</button>
+</div></section>
+
+<section class="scene" id="s4"><div class="panel">
+<div class="eyebrow">Choose an envelope</div><h2>Messages From Your Students 💌</h2>
+<div class="envelopes">
+<div class="env" onclick="message(0)"><div class="e">✉️</div><b>Open Me</b></div>
+<div class="env" onclick="message(1)"><div class="e">💌</div><b>A Message</b></div>
+<div class="env" onclick="message(2)"><div class="e">📨</div><b>One More</b></div>
+</div><div id="secret"></div>
+<button class="btn" onclick="go(5)">Birthday Cake →</button>
+</div></section>
+
+<section class="scene" id="s5"><div class="split">
+<div class="sidecard"><div class="bigemoji">🎁</div><h3>A Gift</h3><p>Our wishes for you.</p></div>
+<div class="panel"><div class="eyebrow">The birthday moment</div><div class="cake">🎂</div><div class="candle">🕯️</div>
+<h2>Make A Wish, Sir! ✨</h2><p>May this year bring happiness, success and countless wonderful memories.</p>
+<button class="btn" onclick="wish()">BLOW THE CANDLE 🎆</button></div>
+<div class="sidecard"><div class="bigemoji">🎉</div><h3>Celebrate</h3><p>It's your day!</p></div>
+</div></section>
+
+<section class="scene final" id="s6"><div class="panel">
+<div class="eyebrow">The final reveal</div><h1>HAPPY<br>BIRTHDAY<br>LIKITH SIR! 🎉</h1>
+<p>May your smile stay bright, your journey stay successful, and every new year bring wonderful memories.</p>
+<h3>2nd Year BSc AI — B Section</h3><p><b>From Your Students ❤️</b></p>
+<button class="btn" onclick="revealSecret()">🔐 Find The Secret</button>
+<div id="finalSecret"></div>
+</div></section>
+
+<div class="nav"><button onclick="go(cur-1)">←</button><div class="dots" id="dots"></div><button onclick="go(cur+1)">→</button></div>
+</div>
+<script>
+let cur=0,scenes=[...document.querySelectorAll('.scene')],dots=document.getElementById('dots');
+scenes.forEach((_,i)=>{let d=document.createElement('i');d.className='dot'+(!i?' on':'');d.onclick=()=>go(i);dots.appendChild(d)});
+function go(n){cur=(n+scenes.length)%scenes.length;scenes.forEach((s,i)=>s.classList.toggle('on',i===cur));[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===cur));if(cur===6)confetti(180)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+let texts=[
+"Dear Sir, thank you for teaching us, guiding us and always encouraging us. ❤️",
+"We are lucky to have a teacher who inspires us to learn and grow. Happy Birthday, Sir! 🌟",
+"May your birthday be filled with the same happiness and positivity you bring to your students. 🎉"
+];
+function message(i){let x=document.getElementById('secret');x.textContent=texts[i];x.classList.add('show')}
+function revealSecret(){let x=document.getElementById('finalSecret');x.innerHTML="<p style='margin-top:15px'>✨ You found it! <b>Sir, our biggest wish is that you always stay happy and keep inspiring generations of students. ❤️</b></p>";x.classList.add('show');confetti(120)}
+function wish(){document.querySelector('.candle').textContent='💨';confetti(220);setTimeout(()=>go(6),1800)}
+const c=document.getElementById('fx'),ctx=c.getContext('2d');let pieces=[];
+function size(){c.width=innerWidth;c.height=innerHeight}size();addEventListener('resize',size);
+function confetti(n){for(let i=0;i<n;i++)pieces.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*15,vy:-Math.random()*14-4,r:3+Math.random()*5,a:Math.random()*6,l:100+Math.random()*130})}
+function loop(){ctx.clearRect(0,0,c.width,c.height);pieces=pieces.filter(p=>p.l>0);for(const p of pieces){p.x+=p.vx;p.vy+=.25;p.y+=p.vy;p.a+=.15;p.l--;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillStyle=`hsl(${Math.random()*360},90%,65%)`;ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*2);ctx.restore()}requestAnimationFrame(loop)}loop();
+</script>
+</body></html>
